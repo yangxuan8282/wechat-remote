@@ -60,7 +60,7 @@ sudo apt-get install aria2
 then after login, you can download file with send message to you WeChat account:
 
 ```bash
-ariac url
+aria2c url
 ```
 
 - download video ([youtube-dl](https://github.com/rg3/youtube-dl))
