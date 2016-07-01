@@ -72,6 +72,19 @@ pip install youtube-dl
 youtube-dl url
 ```
 
+查看可选的清晰度
+
+```bash
+youtube-dl -F url
+```
+
+下载选定的清晰度（返回的信息可能较长）
+
+```bash
+youtube-dl -f args url
+```
+
+
 另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
 
 - 播放在线视频 (mpv)
