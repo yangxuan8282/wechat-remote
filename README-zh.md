@@ -92,6 +92,8 @@ youtube-dl -f args url
 
 mpv 的[安装](https://www.zybuluo.com/yangxuan/note/374932#8-mpv)
 
+如需播放在线视频必须在本机上运行脚本，不能通过SSH，否则会报错
+
 安装完之后就可以观看视频了，比如B站
 
 ```bash
@@ -115,3 +117,12 @@ omxplayer $(youtube-dl -g url)
 相关项目：
 
 - [树莓派-微信音乐播放器](https://github.com/yaphone/RasWxMusicbox)：通过微信控制树莓派播放音乐
+
+## Issues
+
+- 通信相关的问题请到ItChat的 [Issues](https://github.com/littlecodersh/ItChat/issues) 反馈
+- 默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的第[26](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L26)行
+- 部分微信账号可能无法给自己发送信息，需用其它账号发送指令
+- 长时间上线可能会掉线，目前没有掉线提示
+- 不要发送 `apt-get` 相关指令，因为目前还没加入终止之前进程的功能
+- 网页版微信协议的分析过程在 ItChat 作者的[这个](https://github.com/littlecodersh/ItChat/blob/master/docs/Tutorial/Tutorial1.md)页面有讲解
