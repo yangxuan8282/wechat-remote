@@ -84,7 +84,6 @@ youtube-dl -F url
 youtube-dl -f args url
 ```
 
-
 另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
 
 - 播放在线视频 (mpv)
@@ -99,9 +98,20 @@ mpv 的[安装](https://www.zybuluo.com/yangxuan/note/374932#8-mpv)
 mpv www.bilibili.com/video/av4306452/
 ```
 
+说明一下，因为微信的原因，有些指令的格式可能会被破坏，这就使得一些指令没法直接发送，比如调用 `youtube-dl` 获取视频地址，然后让 `omxplayer` 播放的指令：
+
+```bash
+omxplayer $(youtube-dl -g url)
+```
+
+就没法成功播放，也许通过其它方式可以调用
+
 
 - 更多
 
 或许可以通过GPIO控制用电器
 
 
+相关项目：
+
+- [树莓派-微信音乐播放器](https://github.com/yaphone/RasWxMusicbox)：通过微信控制树莓派播放音乐
