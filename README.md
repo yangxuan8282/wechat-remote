@@ -7,7 +7,7 @@ This scripts based on [ItChat](https://github.com/littlecodersh/ItChat)
 
 Modified from this [demo](https://github.com/littlecodersh/ItChat/issues/24#issuecomment-228583833)
 
-It should support most commands you use in terminal, for instance apt-get update&&apt-get upgrade
+It should support most commands you use in terminal, for instance `df -h` or `uname -a`
 
 This [page](https://github.com/herrbischoff/awesome-command-line-apps) can give you some hints.
 
@@ -94,7 +94,5 @@ mpv www.bilibili.com/video/av4306452/
 - more
 
 maybe you can use GPIO to remote control lighting
-
-
 
 
