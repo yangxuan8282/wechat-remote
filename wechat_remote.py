@@ -22,6 +22,8 @@ WeChat remote:
 
 @itchat.msg_register('Text')
 def remote(msg):
+	# comment next line you can't send message to yourself
+	if not msg['FromUserName'] == msg['ToUserName']: return
 	if msg['Text'] == 'help':
 		#itchat.send(help)
 		return help
