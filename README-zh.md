@@ -14,7 +14,17 @@
 
 ## 安装
 
-需先下载 `itchat` 框架
+安装 `subprocess32` 模块
+
+```bash
+sudo apt-get install python-dev
+```
+
+```bash
+sudo pip install subprocess32
+```
+
+下载 `itchat` 框架
 
 ```bash
 git clone https://github.com/littlecodersh/ItChat
@@ -104,7 +114,7 @@ python wechat_remote.py
  		you-get -p omxplayer url
  		```
 
- 		相较 `mpv` 而言，`omxplayer` 效率更高，但是有些指令可能无法像在终端内一样执行，比如调用 `youtube-dl` 获取视频地址，然后让 `omxplayer` 播放的指令：
+ 		相较 `mpv` 而言，`omxplayer` 效率更高，但是由于有些指令可能无法像在终端内一样执行，比如调用 `youtube-dl` 获取视频地址，然后让 `omxplayer` 播放的指令：
 
  		```bash
  		omxplayer $(youtube-dl -g url)
