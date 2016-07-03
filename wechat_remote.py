@@ -8,8 +8,13 @@
 
 import os
 import sys
-import subprocess
+#import subprocess
 import itchat
+
+if os.name == 'posix' and sys.version_info[0] < 3:
+	import subprocess32 as subprocess
+else:
+	import subprocess
 
 help = '''\
 WeChat remote:
@@ -25,7 +30,6 @@ def remote(msg):
 	# comment next line if you can't send message to yourself
 	if not msg['FromUserName'] == msg['ToUserName']: return
 	if msg['Text'] == 'help':
-		#itchat.send(help)
 		return help
 	else:
 		commands = msg.get('Content', '')
