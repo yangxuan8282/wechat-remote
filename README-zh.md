@@ -40,103 +40,101 @@ python wechat_remote.py
 
 下面具体说一下需要不同功能该如何安装配置
 
-- 远程下载 ([aria2](https://aria2.github.io/))
+1. 远程下载 ([aria2](https://aria2.github.io/))
 
-先安装 `aria2`：
+	先安装 `aria2`：
 
-```bash
-sudo apt-get update && sudo apt-get upgrade
-```
+	```bash
+	sudo apt-get update && sudo apt-get upgrade
+	```
 
-```bash
-sudo apt-get install aria2
-```
+	```bash
+	sudo apt-get install aria2
+	```
 
-然后就可以给登陆的微信号发送指令来进行下载，比如：
+	然后就可以给登陆的微信号发送指令来进行下载，比如：
 
-```bash
-aria2c url
-```
+	```bash
+	aria2c url
+	```
 
-- 下载视频 (youtube-dl)
+2. 下载视频 (youtube-dl)
 
-先安装 `youtube-dl`
+	先安装 `youtube-dl`
 
-```bash
-pip install youtube-dl
-```
+	```bash
+	pip install youtube-dl
+	```
 
-然后给自己的账号发送指令就可以下载了
+	然后给自己的账号发送指令就可以下载了
 
-```bash
-youtube-dl url
-```
+	```bash
+	youtube-dl url
+	```
 
-查看可选的清晰度
+	查看可选的清晰度
 
-```bash
-youtube-dl -F url
-```
+	```bash
+	youtube-dl -F url
+	```
 
-下载选定的清晰度（返回的信息可能较长）
+	下载选定的清晰度（返回的信息可能较长）
 
-```bash
-youtube-dl -f args url
-```
+	```bash
+	youtube-dl -f args url
+	```
 
-另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
+	另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
 
-- 播放在线视频 
- - `omxplayer` + `you-get`
+3. 播放在线视频 
 
- 测试可用站点：Youtube
+	- `omxplayer` + `you-get`
+
+ 		测试可用站点：Youtube
    
- 先安装 `you-get`
+ 		先安装 `you-get`
 
- ```bash
- sudo pip3 install you-get
- ```
+ 		```bash
+ 		sudo pip3 install you-get
+ 		```
 
- 播放指令：
+ 		播放指令：
 
- ```bash
- you-get -p omxplayer url
- ```
+ 		```bash
+ 		you-get -p omxplayer url
+ 		```
 
- 相较 `mpv` 而言，`omxplayer` 效率更高，但是从 `youtube-dl` 返回视频地址的方法在本脚本不可用，只能通过 `you-get` 调用播放器，国内的站点能成功播放的较少
+ 		相较 `mpv` 而言，`omxplayer` 效率更高，但是有些指令可能无法像在终端内一样执行，比如调用 `youtube-dl` 获取视频地址，然后让 `omxplayer` 播放的指令：
 
- `you-get`获取视频地址的速度比 `youtube-dl` 慢一些，需要耐心等待
+ 		```bash
+ 		omxplayer $(youtube-dl -g url)
+ 		```
 
- - `mpv` 
+ 		就没法成功播放，只能通过 `you-get` 调用播放器；国内的站点能成功播放的较少
 
-测试可用站点：Youtube，Bilibili
+ 		`you-get`获取视频地址的速度比 `youtube-dl` 慢一些，需要耐心等待
 
-播放高清比较吃力，但适用范围广
+ 	- `mpv` 
 
-安装 `mpv` 前需先安装FFmpeg，链接里有[步骤](https://www.zybuluo.com/yangxuan/note/374932#7-ffmpeg)
+ 		测试可用站点：Youtube，Bilibili
 
-mpv 的[安装](https://www.zybuluo.com/yangxuan/note/374932#8-mpv)
+ 		播放高清比较吃力，但适用范围广
 
-如需播放在线视频必须在本机上运行脚本，不能通过SSH，否则会报错
+ 		安装 `mpv` 前需先安装FFmpeg，链接里有[步骤](https://www.zybuluo.com/yangxuan/note/374932#7-ffmpeg)
 
-安装完之后就可以观看视频了，比如B站
+ 		mpv 的[安装](https://www.zybuluo.com/yangxuan/note/374932#8-mpv)
 
-```bash
-mpv www.bilibili.com/video/av4306452/
-```
+ 		如需播放在线视频必须在本机上运行脚本，不能通过SSH，否则会报错
 
-说明一下，因为微信的原因，有些指令的格式可能会被破坏，这就使得一些指令没法直接发送，比如调用 `youtube-dl` 获取视频地址，然后让 `omxplayer` 播放的指令：
+ 		安装完之后就可以观看视频了，比如B站
 
-```bash
-omxplayer $(youtube-dl -g url)
-```
+ 		```bash
+ 		mpv www.bilibili.com/video/av4306452/
+ 		```
 
-就没法成功播放，也许通过其它方式可以调用
+4. 更多
 
-
-- 更多
-
-或许可以通过GPIO控制用电器
+	或许可以通过GPIO控制用电器
 
 
 相关项目：
