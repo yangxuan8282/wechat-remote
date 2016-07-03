@@ -10,6 +10,7 @@ import os
 import sys
 #import subprocess
 import itchat
+import time 
 
 if os.name == 'posix' and sys.version_info[0] < 3:
 	import subprocess32 as subprocess
@@ -34,7 +35,12 @@ def remote(msg):
 	else:
 		commands = msg.get('Content', '')
 		args = commands.split()
-		return subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0].strip()
+		try: 
+			return subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0].strip()
+		except OSError as e:
+			return u'Error'
+	#except:
+		#return u'Error'		
 
 itchat.auto_login()
 itchat.run()
