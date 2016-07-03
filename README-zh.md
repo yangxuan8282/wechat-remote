@@ -131,7 +131,36 @@ python wechat_remote.py
  		```bash
  		mpv www.bilibili.com/video/av4306452/
  		```
+ 	- `BiliDan`	
+ 	
+		看 `Bilibili` 的另一个选择。同样是调用 `mpv` 最大特点是可以选择清晰度
 
+		依然先按教程安装 [mpv](https://www.zybuluo.com/yangxuan/note/374932#8-mpv) 及 [FFmpeg](https://www.zybuluo.com/yangxuan/note/374932#7-ffmpeg)
+		
+		之后下载 `Bilidan` 及 `Danmaku2ASS` 到相同目录：
+
+		```bash
+		git clone https://github.com/m13253/BiliDan
+		```
+		
+		```bash
+		cd BiliDan
+		```
+		
+		```bash
+		wget https://raw.githubusercontent.com/m13253/danmaku2ass/master/danmaku2ass.py
+		```
+		
+		通过微信运行 `.py` 文件要用绝对路径
+		
+		命令示例：
+		
+		```bash
+		/home/pi/Bilidan/bilidan.py -q 2 http://www.bilibili.com/video/av1250502/
+		```
+		
+		关闭弹幕按 <kbd>v</kbd>
+		
 4. 更多
 
 	或许可以通过GPIO控制用电器
@@ -144,8 +173,8 @@ python wechat_remote.py
 ## Issues
 
 - 通信相关的问题请到ItChat的 [Issues](https://github.com/littlecodersh/ItChat/issues) 反馈
-- 默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的第[26](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L26)行
+- 默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的第[32](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32)行
 - 部分微信账号可能无法给自己发送信息，需用其它账号发送指令
 - 长时间上线可能会掉线，目前没有掉线提示
 - 不要发送 `apt-get` 相关指令，因为目前还没加入终止之前进程的功能
-- 网页版微信协议的分析过程在 ItChat 作者的[这个](https://github.com/littlecodersh/ItChat/blob/master/docs/Tutorial/Tutorial1.md)页面有讲解
+- 网页版微信协议的分析过程在 ItChat 作者的这个[页面](https://github.com/littlecodersh/ItChat/blob/master/docs/Tutorial/Tutorial1.md)有讲解
