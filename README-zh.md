@@ -86,7 +86,33 @@ youtube-dl -f args url
 
 另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
 
-- 播放在线视频 (mpv)
+- 播放在线视频 
+ 
+  - `omxplayer` + `you-get`
+
+测试可用站点：Youtube
+   
+先安装 `you-get`
+
+```bash
+sudo pip3 install you-get
+```
+
+播放指令：
+
+```bash
+you-get -p omxplayer url
+```
+
+相较 `mpv` 而言，`omxplayer` 效率更高，但是从 `youtube-dl` 返回视频地址的方法在本脚本不可用，只能通过 `you-get` 调用播放器，国内的站点能成功播放的较少
+
+`you-get`获取视频地址的速度比 `youtube-dl` 慢一些，需要耐心等待
+
+  - `mpv` 
+
+测试可用站点：Youtube，Bilibili
+
+播放高清比较吃力，但适用范围广
 
 安装 `mpv` 前需先安装FFmpeg，链接里有[步骤](https://www.zybuluo.com/yangxuan/note/374932#7-ffmpeg)
 
