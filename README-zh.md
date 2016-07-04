@@ -1,6 +1,11 @@
 # wechat-remote
 通过微信远程控制电脑 (比如树莓派) 
 
+- 利用网页版微信通信协议向树莓派发送指令，类似一个非实时的终端交互
+- 相比其它微信远程而言，这个脚本可以适用于普通微信号
+- 适用于无公网IP的情况下发送命令
+
+
 基于 [ItChat](https://github.com/littlecodersh/ItChat) 框架；另外这个框架有一个 [robot](https://github.com/littlecodersh/ItChat/tree/robot) 分支，可做聊天机器人
 
 在这个[demo](https://github.com/littlecodersh/ItChat/issues/24#issuecomment-228583833)的基础上修改而成
@@ -66,6 +71,36 @@ python wechat_remote.py
 
 	```bash
 	aria2c url
+	```
+	
+	如果想看下载进度可以利用 `diana`：
+	
+	下载：
+	
+	```bash
+	cd ~
+	```
+	
+	```bash
+	git clone https://github.com/baskerville/diana
+	```
+	
+	启动：
+	
+	```bash
+	/home/pi/diana/dad start
+	```
+	
+	通过微信添加下载：
+	
+	```bash
+	/home/pi/diana/diana add url
+	```
+	
+	通过微信查看下载进度：
+	
+	```bash
+	/home/pi/diana/diana list
 	```
 
 2. 下载视频 (youtube-dl)
