@@ -3,8 +3,13 @@
 
 - 利用网页版微信通信协议向树莓派发送指令，类似一个非实时的终端交互
 - 相比其它微信远程而言，这个脚本可以适用于普通微信号
-- 适用于无公网IP的情况下发送命令
+- 适用于无公网IP的情况下远程发送命令
 
+测试可用系统为： `RASPBIAN JESSIE`
+
+测试硬件为： `树莓派3`
+
+另外无头派(未连接显示器的 RPi )似乎无法登陆 `ItChat`
 
 基于 [ItChat](https://github.com/littlecodersh/ItChat) 框架；另外这个框架有一个 [robot](https://github.com/littlecodersh/ItChat/tree/robot) 分支，可做聊天机器人
 
@@ -51,9 +56,24 @@ wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/master/wechat_
 python wechat_remote.py
 ```
 
+建议在 `screen` 内运行：
+
+```bash
+sudo apt-get install screen
+```
+  
+```bash
+screen bash
+```
+
+```
+python wechat_remote.py
+```
+
 扫码登陆后可以操作了（有些微信账号无法给自己发送消息，需用其它账号发送）
 
 下面具体说一下需要不同功能该如何安装配置
+
 
 1. 远程下载 ([aria2](https://aria2.github.io/))
 
@@ -88,20 +108,21 @@ python wechat_remote.py
 	启动：
 	
 	```bash
-	/home/pi/diana/dad start
+	dad start
 	```
 	
 	通过微信添加下载：
 	
 	```bash
-	/home/pi/diana/diana add url
+	diana add url
 	```
 	
 	通过微信查看下载进度：
 	
 	```bash
-	/home/pi/diana/diana list
+	diana list
 	```
+
 
 2. 下载视频 (youtube-dl)
 
@@ -130,6 +151,7 @@ python wechat_remote.py
 	```
 
 	另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
+
 
 3. 播放在线视频 
 
@@ -196,24 +218,30 @@ python wechat_remote.py
 		wget https://raw.githubusercontent.com/m13253/danmaku2ass/master/danmaku2ass.py
 		```
 		
-		通过微信运行 `.py` 文件要用绝对路径
-		
 		命令示例：
 		
 		```bash
-		/home/pi/Bilidan/bilidan.py -q 2 http://www.bilibili.com/video/av1250502/
+		bilidan -q 2 http://www.bilibili.com/video/av1250502/
 		```
 		
 		关闭弹幕按 <kbd>v</kbd>
+
 		
 4. 更多
 
 	或许可以通过GPIO控制用电器
 
 
-相关项目：
+## Tips:
+
+对于没有安装的 `.py` 文件，比如上面例子里的 `dad`、 `diana`、 `bilidan`， 如果想省略输入绝对路径，可在 `wechat_remote.py` 文件内自定义。
+在脚本内修改是因为添加 `PATH` 或是自定义 `aliases` 在 `subprocess` 内均失效， 而启用  `shell=True` 的返回结果与预期并不一致 
+
+
+## 相关项目：
 
 - [树莓派-微信音乐播放器](https://github.com/yaphone/RasWxMusicbox)：通过微信控制树莓派播放音乐
+
 
 ## Issues
 

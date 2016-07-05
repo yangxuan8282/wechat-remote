@@ -30,15 +30,29 @@ WeChat remote:
 def remote(msg):
 	# comment next line if you can't send message to yourself
 	if not msg['FromUserName'] == msg['ToUserName']: return
-	if msg['Text'] == 'help':
+	if msg['Text'] in ['help', u'帮助']:
 		return help
 	else:
 		commands = msg.get('Content', '')
 		args = commands.split()
+		
+		# Custom aliases 
+		if args[0] == 'bilidan':
+			args[0] = '/home/pi/BiliDan/bilidan.py'
+
+		if args[0] == 'dad':
+			args[0] = '/home/pi/diana/dad'
+		
+		if args[0] == 'diana':
+			args[0] = '/home/pi/diana/diana'
+
 		try: 
-			return subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0].strip()
+			return subprocess.Popen(args, 
+									# shell=True,
+									# stderr=subprocess.PIPE
+									stdout=subprocess.PIPE).communicate()[0].strip()
 		except OSError as e:
-			return u'Error'
+			return u'Commands/Files not found'
 	#except:
 		#return u'Error'		
 
