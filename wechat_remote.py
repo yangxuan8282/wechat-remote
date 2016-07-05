@@ -49,7 +49,8 @@ def remote(msg):
 		try: 
 			return subprocess.Popen(args, 
 									# shell=True,
-									# stderr=subprocess.PIPE
+									# executable='/bin/bash',
+									# stderr=subprocess.PIPE,
 									stdout=subprocess.PIPE).communicate()[0].strip()
 		except OSError as e:
 			return u'Commands/Files not found'
