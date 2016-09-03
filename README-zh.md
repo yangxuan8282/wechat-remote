@@ -9,8 +9,6 @@
 
 测试硬件为： `树莓派3`
 
-另外无头派(未连接显示器的 RPi )似乎无法登陆 `ItChat`
-
 基于 [ItChat](https://github.com/littlecodersh/ItChat) 框架；另外这个框架有一个 [robot](https://github.com/littlecodersh/ItChat/tree/robot) 分支，可做聊天机器人
 
 在这个[demo](https://github.com/littlecodersh/ItChat/issues/24#issuecomment-228583833)的基础上修改而成

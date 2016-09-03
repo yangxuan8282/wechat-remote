@@ -31,8 +31,32 @@ then `cd` into the folder, and download the scripts
 cd ItChat
 ```
 
+install `subprocess32`:
+
 ```bash
-wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/master/wechat_remote.py
+sudo apt-get install python-dev
+```
+
+```bash
+sudo pip install subprocess32
+```
+
+I would suggest run this scripts in `screen`:
+
+```bash
+sudo apt-get install screen
+```
+
+```bash
+screen bash
+```
+
+```bash
+python wechat_remote.py
+```
+
+```bash
+wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/filehelper/wechat_remote.py
 ```
 
 run the scripts:
@@ -119,6 +143,5 @@ maybe you can use GPIO to remote control lighting
 
 
 ## Tips:
- - For security reasons, this scripts will only process the message from yourself.(You can comment [this](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32) line to toggle it.)
  - Some WeChat account can't send message to himself, you should use [filehelper](https://github.com/yangxuan8282/wechat-remote/tree/filehelper) branch, and send commmands to filehelper
  - User should avoid sending commmands like `aria2c` or `apt-get`, use wrapper instead, because the [docs](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.communicate) for Popen.communicate [1] say explicitly: " Wait for process to terminate.", so new commands won't process until those commmands fininsed
