@@ -31,6 +31,30 @@ then `cd` into the folder, and download the scripts
 cd ItChat
 ```
 
+install `subprocess32`:
+
+```bash
+sudo apt-get install python-dev
+```
+
+```bash
+sudo pip install subprocess32
+```
+
+I would suggest run this scripts in `screen`:
+
+```bash
+sudo apt-get install screen
+```
+
+```bash
+screen bash
+```
+
+```bash
+python wechat_remote.py
+```
+
 ```bash
 wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/filehelper/wechat_remote.py
 ```
