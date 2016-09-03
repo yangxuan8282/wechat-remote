@@ -238,7 +238,6 @@ python wechat_remote.py
 ## Issues
 
 - 通信相关的问题请到ItChat的 [Issues](https://github.com/littlecodersh/ItChat/issues) 反馈
-- 基于安全考虑，默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的[这](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32)行
 - 部分微信账号可能无法直接给自己发送信息，可以通过利用微信 `文件传输助手`的这个[分支](https://github.com/yangxuan8282/wechat-remote/tree/filehelper)，向 `文件传输助手`发送指令
 - 可以短时间保持登陆状态，掉线会在终端内有提示 `LOG OUT`
 - 不要发送会占用进程的指令，比如 `aria2c` 或 `apt-get` ，尽量通过 wrapper，这是因为 `subprocess` 需要 "Wait for process to terminate."([出处](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.communicate))
