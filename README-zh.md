@@ -47,7 +47,7 @@ cd ItChat
 ```
 
 ```bash
-wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/master/wechat_remote.py
+wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/filehelper/wechat_remote.py
 ```
 
 运行脚本：
