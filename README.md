@@ -1,7 +1,7 @@
 [中文](README-zh.md)
 
 # wechat-remote
-interact with your computer (such as RaspberryPi) via WeChat 
+interact with your computer (such as RaspberryPi) via WeChat
 
 This scripts based on [ItChat](https://github.com/littlecodersh/ItChat)
 
@@ -17,7 +17,7 @@ This [page](https://github.com/herrbischoff/awesome-command-line-apps) can give 
 - cast online video
 - & more
 
-## How to install 
+## How to install
 
 You should get itchat first:
 
@@ -57,10 +57,32 @@ sudo apt-get update&&sudo apt-get upgrade
 sudo apt-get install aria2
 ```
 
-then after login, you can download file with send message to you WeChat account:
+install `diana`：
 
 ```bash
-aria2c url
+cd ~
+```
+
+```bash
+git clone https://github.com/baskerville/diana
+```
+
+start：
+
+```bash
+dad start
+```
+
+download file：
+
+```bash
+diana add url
+```
+
+check downloading：
+
+```bash
+diana list
 ```
 
 - download video ([youtube-dl](https://github.com/rg3/youtube-dl))
@@ -96,3 +118,7 @@ mpv www.bilibili.com/video/av4306452/
 maybe you can use GPIO to remote control lighting
 
 
+## Tips:
+ - For security reasons, this scripts will only process the message from yourself.(You can comment [this](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32) line to toggle it.)
+ - Some WeChat account can't send message to himself, you should use [filehelper](https://github.com/yangxuan8282/wechat-remote/tree/filehelper) branch, and send commmands to filehelper
+ - User should avoid sending commmands like `aria2c` or `apt-get`, use wrapper instead, because the [docs](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.communicate) for Popen.communicate [1] say explicitly: " Wait for process to terminate.", so new commands won't process until those commmands fininsed

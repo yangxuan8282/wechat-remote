@@ -1,11 +1,11 @@
 # wechat-remote
-通过微信远程控制电脑 (比如树莓派) 
+通过微信远程控制电脑 (比如树莓派)
 
 - 利用网页版微信通信协议向树莓派发送指令，类似一个非实时的终端交互
 - 相比其它微信远程而言，这个脚本可以适用于普通微信号
 - 适用于无公网IP的情况下远程发送命令
 
-测试可用系统为： `RASPBIAN JESSIE`
+测试可用系统为： `RASPBIAN JESSIE`, `Arch Linux Arm`
 
 测试硬件为： `树莓派3`
 
@@ -17,7 +17,7 @@
 
 ## 功能
 
-- 远程下载(aria2)
+- 远程下载(aria2 + diana)
 - 远程下载在线视频(youtube-dl)
 - 播放在线视频(mpv)
 - 更多
@@ -61,7 +61,7 @@ python wechat_remote.py
 ```bash
 sudo apt-get install screen
 ```
-  
+
 ```bash
 screen bash
 ```
@@ -75,7 +75,7 @@ python wechat_remote.py
 下面具体说一下需要不同功能该如何安装配置
 
 
-1. 远程下载 ([aria2](https://aria2.github.io/))
+1. 远程下载 ([aria2](https://aria2.github.io/) + diana)
 
 	先安装 `aria2`：
 
@@ -87,38 +87,30 @@ python wechat_remote.py
 	sudo apt-get install aria2
 	```
 
-	然后就可以给登陆的微信号发送指令来进行下载，比如：
+	安装 `diana`：
 
-	```bash
-	aria2c url
-	```
-	
-	如果想看下载进度可以利用 `diana`：
-	
-	下载：
-	
 	```bash
 	cd ~
 	```
-	
+
 	```bash
 	git clone https://github.com/baskerville/diana
 	```
-	
+
 	启动：
-	
+
 	```bash
 	dad start
 	```
-	
+
 	通过微信添加下载：
-	
+
 	```bash
 	diana add url
 	```
-	
+
 	通过微信查看下载进度：
-	
+
 	```bash
 	diana list
 	```
@@ -153,12 +145,12 @@ python wechat_remote.py
 	另一个视频下载的选择是 [you-get](https://github.com/soimort/you-get)
 
 
-3. 播放在线视频 
+3. 播放在线视频
 
 	- `omxplayer` + `you-get`
 
  		测试可用站点：Youtube
-   
+
  		先安装 `you-get`
 
  		```bash
@@ -181,7 +173,7 @@ python wechat_remote.py
 
  		`you-get`获取视频地址的速度比 `youtube-dl` 慢一些，需要耐心等待
 
- 	- `mpv` 
+ 	- `mpv`
 
  		测试可用站点：Youtube，Bilibili
 
@@ -198,35 +190,35 @@ python wechat_remote.py
  		```bash
  		mpv www.bilibili.com/video/av4306452/
  		```
- 	- `BiliDan`	
- 	
+ 	- `BiliDan`
+
 		看 `Bilibili` 的另一个选择。同样是调用 `mpv` 最大特点是可以选择清晰度
 
 		依然先按教程安装 [mpv](https://www.zybuluo.com/yangxuan/note/374932#8-mpv) 及 [FFmpeg](https://www.zybuluo.com/yangxuan/note/374932#7-ffmpeg)
-		
+
 		之后下载 `Bilidan` 及 `Danmaku2ASS` 到相同目录：
 
 		```bash
 		git clone https://github.com/m13253/BiliDan
 		```
-		
+
 		```bash
 		cd BiliDan
 		```
-		
+
 		```bash
 		wget https://raw.githubusercontent.com/m13253/danmaku2ass/master/danmaku2ass.py
 		```
-		
+
 		命令示例：
-		
+
 		```bash
 		bilidan -q 2 http://www.bilibili.com/video/av1250502/
 		```
-		
+
 		关闭弹幕按 <kbd>v</kbd>
 
-		
+
 4. 更多
 
 	或许可以通过GPIO控制用电器
@@ -235,7 +227,7 @@ python wechat_remote.py
 ## Tips:
 
 对于没有安装的 `.py` 文件，比如上面例子里的 `dad`、 `diana`、 `bilidan`， 如果想省略输入绝对路径，可在 `wechat_remote.py` 文件内自定义。
-在脚本内修改是因为添加 `PATH` 或是自定义 `aliases` 在 `subprocess` 内均失效， 而启用  `shell=True` 的返回结果与预期并不一致 
+在脚本内修改是因为添加 `PATH` 或是自定义 `aliases` 在 `subprocess` 内均失效， 而启用  `shell=True` 的返回结果与预期并不一致
 
 
 ## 相关项目：
@@ -246,8 +238,8 @@ python wechat_remote.py
 ## Issues
 
 - 通信相关的问题请到ItChat的 [Issues](https://github.com/littlecodersh/ItChat/issues) 反馈
-- 默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的第[32](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32)行
-- 部分微信账号可能无法给自己发送信息，需用其它账号发送指令
-- 长时间上线可能会掉线，目前没有掉线提示
-- 不要发送 `apt-get` 相关指令，因为目前还没加入终止之前进程的功能
-- 网页版微信协议的分析过程在 ItChat 作者的这个[页面](https://github.com/littlecodersh/ItChat/blob/master/docs/Tutorial/Tutorial1.md)有讲解
+- 基于安全考虑，默认只处理自己账号发送来的指令，如需修改请注释掉 `wechat_remote.py` 文件的[这](https://github.com/yangxuan8282/wechat-remote/blob/master/wechat_remote.py#L32)行
+- 部分微信账号可能无法直接给自己发送信息，可以通过利用微信 `文件传输助手`的这个[分支](https://github.com/yangxuan8282/wechat-remote/tree/filehelper)，向 `文件传输助手`发送指令
+- 可以短时间保持登陆状态，掉线会在终端内有提示 `LOG OUT`
+- 不要发送会占用进程的指令，比如 `aria2c` 或 `apt-get` ，尽量通过 wrapper，这是因为 `subprocess` 需要 "Wait for process to terminate."([出处](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.communicate))
+- 网页版微信协议的相关内容参照 ItChat 作者的这个[页面](https://github.com/littlecodersh/ItChat/blob/master/docs/Tutorial/Tutorial1.md)有讲解
