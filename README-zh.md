@@ -113,6 +113,17 @@ python wechat_remote.py
 	diana list
 	```
 
+	百度云的话可以将手机浏览器的浏览器标识改为 iPhone，进入文件下载页面点击 `打开` 按钮获取url
+	然后发送给登陆的微信账号，格式如下
+
+	```bash
+	diana add "url"
+	```
+
+	加双引号是为了防止地址被断开
+
+	需要注意的是这种地址下载过程会间歇式进行，下一段时间会停顿，不如 Chrome 插件 [BaiduExporter](https://github.com/acgotaku/BaiduExporter) 获取的地址快，但是 BaiduExporter 获取的地址需要获取 cache，过程相对复杂一些
+
 
 2. 下载视频 (youtube-dl)
 
