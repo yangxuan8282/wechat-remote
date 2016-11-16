@@ -1,0 +1,61 @@
+#! /bin/sh
+# /etc/init.d/aria2c
+
+### BEGIN INIT INFO
+# Provides: aria2c
+# Required-Start:    $network $local_fs $remote_fs
+# Required-Stop:     $network $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: aria2c RPC init script.
+# Description: Starts and stops aria2 RPC services.
+### END INIT INFO
+
+#VAR
+RUN="/usr/bin/aria2c"
+ARIA_PID=$(ps ux | awk '/aria2c --daemon=true --enable-rpc/ && !/awk/ 
+{print $2}')
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script aria2c "
+    if [ -z "$ARIA_PID" ]; then
+      $RUN --daemon=true --enable-rpc=true -D 
+--conf-path=/home/pi/.aria2/aria2.conf
+      echo "Started"
+    else
+      echo "aria2c already started"
+    fi
+    ;;
+  stop)
+    echo "Stopping script aria2c"
+    if [ ! -z "$ARIA_PID" ]; then
+      kill $ARIA_PID
+    fi
+    echo "OK"
+    ;;
+  restart)
+    echo "Restarting script aria2c"
+    if [ ! -z "$ARIA_PID" ]; then
+      kill $ARIA_PID
+    fi
+    sleep 3   # TODO:Maybe need to be adjust
+    $RUN --daemon=true --enable-rpc=true -D 
+--conf-path=/home/pi/.aria2/aria2.conf
+    echo "OK"
+    ;;
+  status)
+    if [ ! -z "$ARIA_PID" ]; then
+      echo "The aria2c is running with PID = "$ARIA_PID
+    else
+      echo "No process found for aria2c RPC"
+    fi
+    ;;
+  *)
+    echo "Usage: /etc/init.d/aria2c {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+exit 0
+
