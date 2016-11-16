@@ -13,16 +13,14 @@
 
 #VAR
 RUN="/usr/bin/aria2c"
-ARIA_PID=$(ps ux | awk '/aria2c --daemon=true --enable-rpc/ && !/awk/ 
-{print $2}')
+ARIA_PID=$(ps ux | awk '/aria2c --daemon=true --enable-rpc/ && !/awk/ {print $2}')
 
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
     echo "Starting script aria2c "
     if [ -z "$ARIA_PID" ]; then
-      $RUN --daemon=true --enable-rpc=true -D 
---conf-path=/home/pi/.aria2/aria2.conf
+      $RUN --daemon=true --enable-rpc=true -D --conf-path=/home/pi/.aria2/aria2.conf
       echo "Started"
     else
       echo "aria2c already started"
@@ -41,8 +39,7 @@ case "$1" in
       kill $ARIA_PID
     fi
     sleep 3   # TODO:Maybe need to be adjust
-    $RUN --daemon=true --enable-rpc=true -D 
---conf-path=/home/pi/.aria2/aria2.conf
+    $RUN --daemon=true --enable-rpc=true -D --conf-path=/home/pi/.aria2/aria2.conf
     echo "OK"
     ;;
   status)
@@ -58,4 +55,3 @@ case "$1" in
     ;;
 esac
 exit 0
-

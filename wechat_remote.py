@@ -29,7 +29,7 @@ WeChat remote:
 @itchat.msg_register('Text')
 def remote(msg):
 
-	if not msg['FromUserName'] == msg['ToUserName']: return  # comment this line if you can't send message to yourself
+	#if not msg['FromUserName'] == msg['ToUserName']: return  # comment this line if you can't send message to yourself
 	if msg['Text'] in ['help', u'帮助']:
 		return help
 	else:
@@ -37,14 +37,14 @@ def remote(msg):
 		args = commands.split()
 
 		# Custom aliases
-		if args[0] == 'bilidan':
-			args[0] = '/home/pi/BiliDan/bilidan.py'
+		# if args[0] == 'bilidan':
+			# args[0] = '/home/pi/BiliDan/bilidan.py'
 
-		if args[0] == 'dad':
-			args[0] = '/home/pi/diana/dad'
+		# if args[0] == 'dad':
+			# args[0] = '/home/pi/diana/dad'
 
-		if args[0] == 'diana':
-			args[0] = '/home/pi/diana/diana'
+		# if args[0] == 'diana':
+			# args[0] = '/home/pi/diana/diana'
 
 		try:
 			proc =  subprocess.Popen(args,
