@@ -20,12 +20,20 @@
 - 播放在线视频(mpv)
 - 更多
 
+## Quick Install (Debian/Raspbian)
+
+(将会安装配置 `aria2`, `diana`, `youtube-dl`, 如你已安装 `aria2` 请对照下面的 `安装`部分安装本脚本)
+
+```bash
+/bin/bash -c "$(curl -sL https://git.io/vXy3m)"
+```
+
 ## 安装
 
 安装 `subprocess32` 模块
 
 ```bash
-sudo apt-get install python-dev
+sudo apt-get install python-dev python-pillow
 ```
 
 ```bash
@@ -35,14 +43,7 @@ sudo pip install subprocess32
 下载 `itchat` 框架
 
 ```bash
-git clone https://github.com/littlecodersh/ItChat
-```
-
-然后 `cd` 到目录内, 并下载脚本
-
-```bash
-cd ItChat
-```
+sudo pip install itchat```
 
 ```bash
 wget https://raw.githubusercontent.com/yangxuan8282/wechat-remote/master/wechat_remote.py

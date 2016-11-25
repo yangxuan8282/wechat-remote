@@ -17,25 +17,27 @@ This [page](https://github.com/herrbischoff/awesome-command-line-apps) can give 
 - cast online video
 - & more
 
+## Quick install (Debian/Raspbian)
+
+(This will install and configure `aria2`, `youtube-dl`, `diana`, if you have installed the `aria2` package, please check `How to install` section.)
+
+```bash
+/bin/bash -c "$(curl -sL https://git.io/vXy3m)"
+```
+
 ## How to install
 
 You should get itchat first:
 
 ```bash
-git clone https://github.com/littlecodersh/ItChat
+sudo apt-get install python-dev python-pillow
 ```
 
-then `cd` into the folder, and download the scripts
-
 ```bash
-cd ItChat
+sudo pip install itchat
 ```
 
 install `subprocess32`:
-
-```bash
-sudo apt-get install python-dev
-```
 
 ```bash
 sudo pip install subprocess32
@@ -85,6 +87,14 @@ cd ~
 
 ```bash
 git clone https://github.com/baskerville/diana
+```
+
+```bash
+cd diana
+```
+
+```bash
+sudo cp dad diana /usr/bin
 ```
 
 start：

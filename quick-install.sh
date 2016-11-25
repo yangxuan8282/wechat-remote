@@ -5,16 +5,20 @@ if ! [[ -f /usr/bin/wechat-remote ]]; then
   git clone https://github.com/baskerville/diana /tmp/diana
   sudo pip install itchat
   sudo pip install subprocess32
-  sudo cp /tmp/diana/diana /usr/bin
-  sudo cp /tmp/diana/dad /usr/bin
-  sudo chmod 755 /usr/bin/dad /usr/bin/diana
-  mkdir -p $HOME/.config/aria2
-  cp aria2.conf $HOME/.config/aria2/aria2.conf
-  touch $HOME/.config/aria2/session.lock
-  sudo cp aria2.service /etc/systemd/user
-  systemctl --user start aria2
-  systemctl --user enable aria2  
+  sudo install -Dm 755 /tmp/diana/dad /tmp/diana/diana /usr/bin
+  sudo cp /tmp/wechat-remote/aria2.conf /etc/aria2.conf
+  echo "Enter the aria2 download directory (full path) and press [ENTER]: "
+  read dir
+  sudo sed -i -e "s|dir=\$HOME|dir=$dir|g" /etc/aria2.conf
+  sudo sed -i -e "s|input-file=.*|input-file=/var/aria2/session.lock|g" /etc/aria2.conf
+  sudo sed -i -e "s|save-session=.*|input-file=/var/aria2/session.lock|g" /etc/aria2.conf
+  sudo mkdir -p /var/aria2
+  sudo touch /var/aria2/session.lock
+  sudo cp /tmp/wechat-remote/aria2.service /etc/systemd/system
+  sudo systemctl daemon-reload
+  sudo systemctl enable aria2
+  sudo systemctl start aria2
+  sudo systemctl status aria2
   dad start
-  sudo cp /tmp/wechat-remote/wechat_remote.py /usr/bin/wechat-remote
-  sudo chmod 755 /usr/bin/wechat-remote
+  sudo install -Dm 755 /tmp/wechat-remote/wechat_remote.py /usr/bin/wechat-remote
 fi
